@@ -7,6 +7,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import android.util.Log
 import jp.techacademy.hiromu.naitou.apiapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), FragmentCallback {
@@ -47,8 +48,9 @@ class MainActivity : AppCompatActivity(), FragmentCallback {
         })
     }
 
-    override fun onClickItem(url: String) {
+    override fun onClickItem(url: String,id: String) {
         WebViewActivity.start(this, url)
+        Log.d("TEST",id.toString())
     }
 
     /**

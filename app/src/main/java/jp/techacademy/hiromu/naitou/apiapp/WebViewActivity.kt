@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.squareup.picasso.Picasso
 import jp.techacademy.hiromu.naitou.apiapp.databinding.ActivityWebViewBinding
 
 class WebViewActivity : AppCompatActivity() {
@@ -15,6 +16,14 @@ class WebViewActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.webView.loadUrl(intent.getStringExtra(KEY_URL).toString())
+
+        /*
+        // nameTextViewのtextプロパティに代入されたオブジェクトのnameプロパティを代入
+        binding.nameTextView.text = favoriteShop.name
+
+        // Picassoというライブラリを使ってImageVIewに画像をはめ込む
+        Picasso.get().load(favoriteShop.imageUrl).into(binding.imageView)
+        */
     }
 
     companion object {

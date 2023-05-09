@@ -10,7 +10,43 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/imageViewTab"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="@id/favoritetab"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/favoritetab" />
+
+    <TextView
+        android:id="@+id/nameTextViewTab"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:padding="8dp"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@id/favoritetab"
+        app:layout_constraintEnd_toStartOf="@id/favoriteImageViewTab"
+        app:layout_constraintStart_toEndOf="@id/imageViewTab"
+        app:layout_constraintTop_toTopOf="@id/favoritetab" />
+
+    <ImageView
+        android:id="@+id/favoriteImageViewTab"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_star"
+        app:layout_constraintBottom_toBottomOf="@id/favoritetab"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="@id/favoritetab"
+        app:layout_constraintTop_toTopOf="@id/favoritetab"
+        app:tint="@android:color/holo_orange_light"/>
 
     <WebView
         android:id="@+id/webView"
@@ -19,10 +55,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/favoritetab" />
+        app:layout_constraintTop_toBottomOf="@id/favoritetab"/>
+
+
+    <!--
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/favoritetab"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageView
-        android:id="@+id/favoriteImageView"
+        android:id="@+id/favoriteImageTab"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:src="@drawable/ic_star"
@@ -31,4 +77,5 @@
         app:layout_constraintEnd_toEndOf="@id/favoritetab"
         app:layout_constraintTop_toTopOf="@id/favoritetab"
         app:tint="@android:color/holo_orange_light" />
+        -->
 </androidx.constraintlayout.widget.ConstraintLayout>
