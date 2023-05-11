@@ -1,5 +1,5 @@
 package jp.techacademy.hiromu.naitou.apiapp
-
+/*
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
@@ -16,8 +16,9 @@ import okhttp3.*
 import android.util.Log
 import okhttp3.logging.HttpLoggingInterceptor
 import java.io.IOException
-
-class WebViewFragment : Fragment() {
+*/
+class WebViewFragment{
+/*
     private var _binding: FragmentApiBinding? = null
     private val binding get() = _binding!!
 
@@ -70,5 +71,5 @@ class WebViewFragment : Fragment() {
             }
         }
     }
-
+*/
 }

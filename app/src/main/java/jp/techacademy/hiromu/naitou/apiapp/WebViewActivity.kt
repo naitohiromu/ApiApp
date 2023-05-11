@@ -28,11 +28,13 @@ class WebViewActivity : AppCompatActivity() , FragmentCallback{
         binding.webView.loadUrl(url)
 
         val name = intent.getStringExtra("name").toString()
-        binding.nameTextViewTab.text = intent.getStringExtra("name")
+        binding.nameTextViewTab.text = name
 
         val logoImage = intent.getStringExtra("logoImage").toString()
         Picasso.get().load(logoImage).into(binding.imageViewTab)
 
+        val address = intent.getStringExtra("address").toString()
+        binding.addressTextViewTab.text = address
         //お気に入りの処理
         binding.favoriteImageViewTab.apply{
             val id = intent.getStringExtra("id").toString()
@@ -47,7 +49,7 @@ class WebViewActivity : AppCompatActivity() , FragmentCallback{
                     setImageResource(R.drawable.ic_star_border)
 
                 } else{
-                    onAddFavorite(url,id,logoImage,name)
+                    onAddFavorite(url,id,logoImage,name,address)
                     setImageResource(R.drawable.ic_star)
 
                 }
@@ -63,16 +65,17 @@ class WebViewActivity : AppCompatActivity() , FragmentCallback{
         */
     }
 
-    override fun onClickItem(url: String, id: String, logoImage: String, name: String) {
+    override fun onClickItem(url: String, id: String, logoImage: String, name: String, address: String) {
         TODO("Not yet implemented")
     }
 
-    override fun onAddFavorite(f_url:String,f_id:String,logoImage:String,f_name:String) {
+    override fun onAddFavorite(f_url:String,f_id:String,logoImage:String,f_name:String, f_address:String) {
         FavoriteShop.insert(FavoriteShop().apply {
             id = f_id
             name = f_name
             imageUrl = logoImage
             url = f_url
+            address = f_address
         })
         Log.d("test",f_name)
     }
@@ -112,12 +115,13 @@ class WebViewActivity : AppCompatActivity() , FragmentCallback{
         private const val KEY_URL = "key_url"
         private const val VIEW_PAGER_POSITION_API = 0
         private const val VIEW_PAGER_POSITION_FAVORITE = 1
-        fun start(activity: Activity, url:String,id:String,logoImage:String,name:String) {
+        fun start(activity: Activity, url:String,id:String,logoImage:String,name:String,address:String) {
             val intent = Intent(activity,WebViewActivity::class.java)
             intent.putExtra(KEY_URL,url)
             intent.putExtra("id",id)
             intent.putExtra("logoImage",logoImage)
             intent.putExtra("name",name)
+            intent.putExtra("address",address)
             activity.startActivity(intent)
             /*
             activity.startActivity(

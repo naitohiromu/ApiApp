@@ -48,8 +48,8 @@ class MainActivity : AppCompatActivity(), FragmentCallback {
         })
     }
 
-    override fun onClickItem(url:String,id:String,logoImage:String,name:String) {
-        WebViewActivity.start(this, url,id,logoImage,name)
+    override fun onClickItem(url:String,id:String,logoImage:String,name:String,address:String) {
+        WebViewActivity.start(this, url,id,logoImage,name,address)
     }
 
     /**
@@ -67,12 +67,13 @@ class MainActivity : AppCompatActivity(), FragmentCallback {
     /**
      * Favoriteに追加するときのメソッド(Fragment -> Activity へ通知する)
      */
-    override fun onAddFavorite(f_url:String,f_id:String,logoImage:String,f_name:String) {
+    override fun onAddFavorite(f_url:String,f_id:String,logoImage:String,f_name:String,f_address:String) {
         FavoriteShop.insert(FavoriteShop().apply {
             id = f_id
             name = f_name
             imageUrl = logoImage
             url = f_url
+            address = f_address
         })
         (viewPagerAdapter.fragments[VIEW_PAGER_POSITION_FAVORITE] as FavoriteFragment).updateData()
     }

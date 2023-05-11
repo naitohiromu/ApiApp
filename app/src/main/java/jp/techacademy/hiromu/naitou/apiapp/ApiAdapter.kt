@@ -17,13 +17,13 @@ import jp.techacademy.hiromu.naitou.apiapp.databinding.RecyclerFavoriteBinding
 class ApiAdapter : ListAdapter<Shop, ApiItemViewHolder>(ApiItemCallback()) {
 
     // 一覧画面から登録するときのコールバック（FavoriteFragmentへ通知するメソッド)
-    var onClickAddFavorite: ((String,String,String,String) -> Unit)? = null
+    var onClickAddFavorite: ((String,String,String,String,String) -> Unit)? = null
 
     // 一覧画面から削除するときのコールバック（ApiFragmentへ通知するメソッド)
     var onClickDeleteFavorite: ((String) -> Unit)? = null
 
     // Itemを押したときのメソッド
-    var onClickItem: ((String,String,String,String) -> Unit)? = null
+    var onClickItem: ((String,String,String,String,String) -> Unit)? = null
     /**
      * ViewHolderを生成して返す
      */
@@ -58,13 +58,14 @@ class ApiItemViewHolder(private val binding: RecyclerFavoriteBinding) :
             )
             setOnClickListener {
                 //adapter.onClickItem?.invoke(shop.logoImage,shop.id)
-                adapter.onClickItem?.invoke(shop.couponUrls.sp.ifEmpty { shop.couponUrls.pc },shop.id,shop.logoImage,shop.name)
+                adapter.onClickItem?.invoke(shop.couponUrls.sp.ifEmpty { shop.couponUrls.pc },shop.id,shop.logoImage,shop.name,shop.address)
             }
         }
 
         // 1行の項目にShopの値をセット
         // nameTextViewのtextプロパティに代入されたオブジェクトのnameプロパティを代入
         binding.nameTextView.text = shop.name
+        binding.addressTextView.text = shop.address
 
         // Picassoライブラリを使い、imageViewにdata.logoImageのurlの画像を読み込ませる
         Picasso.get().load(shop.logoImage).into(binding.imageView)
@@ -82,7 +83,7 @@ class ApiItemViewHolder(private val binding: RecyclerFavoriteBinding) :
                 if (isFavorite) {
                     adapter.onClickDeleteFavorite?.invoke(shop.id)
                 } else {
-                    adapter.onClickAddFavorite?.invoke(shop.couponUrls.sp.ifEmpty { shop.couponUrls.pc },shop.id,shop.logoImage,shop.name)
+                    adapter.onClickAddFavorite?.invoke(shop.couponUrls.sp.ifEmpty { shop.couponUrls.pc },shop.id,shop.logoImage,shop.name,shop.address)
                 }
                 adapter.notifyItemChanged(position)
             }
