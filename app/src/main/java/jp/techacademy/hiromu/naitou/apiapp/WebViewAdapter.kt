@@ -1,5 +1,5 @@
 package jp.techacademy.hiromu.naitou.apiapp
-
+/*
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -7,9 +7,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import jp.techacademy.hiromu.naitou.apiapp.databinding.ActivityWebViewBinding
 import jp.techacademy.hiromu.naitou.apiapp.databinding.RecyclerFavoriteBinding
-
-class WebViewAdapter  : ListAdapter<Shop, WebItemViewHolder>(ApiItemCallback()) {
+*/
+class WebViewAdapter{
+ /*
     // 一覧画面から登録するときのコールバック（FavoriteFragmentへ通知するメソッド)
     var onClickAddFavorite: ((String,String,String,String) -> Unit)? = null
 
@@ -36,8 +38,7 @@ class WebViewAdapter  : ListAdapter<Shop, WebItemViewHolder>(ApiItemCallback()) 
 /**
  * リスト内の1行の内容を保持する
  */
-class WebItemViewHolder(private val binding: RecyclerFavoriteBinding) :
-    RecyclerView.ViewHolder(binding.root) {
+class WebItemViewHolder{
     fun bind(shop: Shop, position: Int, adapter: WebViewAdapter) {
         binding.rootView.apply {
             // 偶数番目と奇数番目で背景色を変更させる
@@ -89,4 +90,6 @@ internal class WebItemCallback : DiffUtil.ItemCallback<Shop>() {
     override fun areContentsTheSame(oldItem: Shop, newItem: Shop): Boolean {
         return oldItem == newItem
     }
+    */
+
 }

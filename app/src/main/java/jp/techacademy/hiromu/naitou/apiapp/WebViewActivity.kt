@@ -33,24 +33,24 @@ class WebViewActivity : AppCompatActivity() , FragmentCallback{
         val logoImage = intent.getStringExtra("logoImage").toString()
         Picasso.get().load(logoImage).into(binding.imageViewTab)
 
+        //お気に入りの処理
         binding.favoriteImageViewTab.apply{
             val id = intent.getStringExtra("id").toString()
             val isFavorite = FavoriteShop.findBy(id) != null
 
-            // 白抜きの星を設定
+            //星を設定
             setImageResource(if (isFavorite) R.drawable.ic_star else R.drawable.ic_star_border)
+            //星をタップしたときの処理
             setOnClickListener{
-                Log.d("test",name)
-
                 if(isFavorite){
-                    onClickDeleteFavorite?.invoke(id)
-                    Log.d("test",isFavorite.toString())
+                    onDeleteFavorite(id)
+                    setImageResource(R.drawable.ic_star_border)
+
                 } else{
-                    onClickAddFavorite?.invoke(url,id,logoImage,name)
-                    Log.d("test",isFavorite.toString())
+                    onAddFavorite(url,id,logoImage,name)
+                    setImageResource(R.drawable.ic_star)
+
                 }
-
-
             }
         }
 
