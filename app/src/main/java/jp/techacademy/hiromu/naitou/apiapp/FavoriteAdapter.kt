@@ -9,12 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import jp.techacademy.hiromu.naitou.apiapp.databinding.RecyclerFavoriteBinding
 
-class FavoriteAdapter : ListAdapter<FavoriteShop, FavoriteItemViewHolder>(FavoriteCallback()) {
+class FavoriteAdapter : ListAdapter<FavoriteShop,FavoriteItemViewHolder>(FavoriteCallback()) {
 
     // お気に入り画面から削除するときのコールバック（ApiFragmentへ通知するメソッド)
-    var onClickDeleteFavorite: ((FavoriteShop) -> Unit)? = null
+    var onClickDeleteFavorite: ((String) -> Unit)? = null
     // Itemを押したときのメソッド
-    var onClickItem: ((String) -> Unit)? = null
+    var onClickItem: ((String,String,String,String) -> Unit)? = null
 
     /**
      * ViewHolderを生成して返す
@@ -50,7 +50,7 @@ class FavoriteItemViewHolder(private val binding: RecyclerFavoriteBinding) :
             )
             // クリック時のイベントリスナーを割り当て
             setOnClickListener {
-                adapter.onClickItem?.invoke(favoriteShop.url)
+                adapter.onClickItem?.invoke(favoriteShop.url,favoriteShop.id,favoriteShop.imageUrl,favoriteShop.name)
             }
         }
 
@@ -63,7 +63,7 @@ class FavoriteItemViewHolder(private val binding: RecyclerFavoriteBinding) :
         // 星をタップした時の処理
         // ※レイアウトの星のアイコンは既定で塗りつぶしなので設定不要
         binding.favoriteImageView.setOnClickListener {
-            adapter.onClickDeleteFavorite?.invoke(favoriteShop)
+            adapter.onClickDeleteFavorite?.invoke(favoriteShop.id)
             adapter.notifyItemChanged(position)
         }
     }

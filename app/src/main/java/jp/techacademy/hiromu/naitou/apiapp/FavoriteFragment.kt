@@ -40,12 +40,12 @@ class FavoriteFragment: Fragment() {
         // FavoriteAdapterのお気に入り削除用のメソッドの追加を行う
         favoriteAdapter.apply {
             // Adapterの処理をそのままActivityに通知
-            onClickDeleteFavorite = {
-                fragmentCallback?.onDeleteFavorite(it.id)
+            onClickDeleteFavorite = {id:String->
+                fragmentCallback?.onDeleteFavorite(id)
             }
             // Itemをクリックしたとき
-            onClickItem = {
-                fragmentCallback?.onClickItem(it,it)
+            onClickItem = { url:String,id:String,logoImage:String,name:String->
+                fragmentCallback?.onClickItem(url,id,logoImage,name)
             }
         }
         // RecyclerViewの初期化

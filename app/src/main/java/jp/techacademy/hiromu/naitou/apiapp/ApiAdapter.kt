@@ -17,14 +17,13 @@ import jp.techacademy.hiromu.naitou.apiapp.databinding.RecyclerFavoriteBinding
 class ApiAdapter : ListAdapter<Shop, ApiItemViewHolder>(ApiItemCallback()) {
 
     // 一覧画面から登録するときのコールバック（FavoriteFragmentへ通知するメソッド)
-    var onClickAddFavorite: ((Shop) -> Unit)? = null
+    var onClickAddFavorite: ((String,String,String,String) -> Unit)? = null
 
     // 一覧画面から削除するときのコールバック（ApiFragmentへ通知するメソッド)
-    var onClickDeleteFavorite: ((Shop) -> Unit)? = null
+    var onClickDeleteFavorite: ((String) -> Unit)? = null
 
     // Itemを押したときのメソッド
-    var onClickItem: ((String) -> Unit)? = null
-
+    var onClickItem: ((String,String,String,String) -> Unit)? = null
     /**
      * ViewHolderを生成して返す
      */
@@ -58,7 +57,8 @@ class ApiItemViewHolder(private val binding: RecyclerFavoriteBinding) :
                 )
             )
             setOnClickListener {
-                adapter.onClickItem?.invoke(if (shop.couponUrls.sp.isNotEmpty()) shop.couponUrls.sp else shop.couponUrls.pc)
+                //adapter.onClickItem?.invoke(shop.logoImage,shop.id)
+                adapter.onClickItem?.invoke(shop.couponUrls.sp.ifEmpty { shop.couponUrls.pc },shop.id,shop.logoImage,shop.name)
             }
         }
 
@@ -80,9 +80,9 @@ class ApiItemViewHolder(private val binding: RecyclerFavoriteBinding) :
             // 星をタップした時の処理
             setOnClickListener {
                 if (isFavorite) {
-                    adapter.onClickDeleteFavorite?.invoke(shop)
+                    adapter.onClickDeleteFavorite?.invoke(shop.id)
                 } else {
-                    adapter.onClickAddFavorite?.invoke(shop)
+                    adapter.onClickAddFavorite?.invoke(shop.couponUrls.sp.ifEmpty { shop.couponUrls.pc },shop.id,shop.logoImage,shop.name)
                 }
                 adapter.notifyItemChanged(position)
             }

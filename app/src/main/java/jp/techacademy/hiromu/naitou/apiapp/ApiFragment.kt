@@ -1,6 +1,5 @@
 package jp.techacademy.hiromu.naitou.apiapp
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
@@ -14,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.moshi.Moshi
 import jp.techacademy.hiromu.naitou.apiapp.databinding.FragmentApiBinding
 import okhttp3.*
+import android.util.Log
 import okhttp3.logging.HttpLoggingInterceptor
 import java.io.IOException
 
@@ -60,16 +60,17 @@ class ApiFragment : Fragment() {
         // ApiAdapterのお気に入り追加、削除用のメソッドの追加を行う
         apiAdapter.apply {
             // Adapterの処理をそのままActivityに通知する
-            onClickAddFavorite = {
-                fragmentCallback?.onAddFavorite(it)
+            onClickAddFavorite = {  url:String,id:String,logoImage:String,name:String ->
+                fragmentCallback?.onAddFavorite(url, id, logoImage, name)
             }
             // Adapterの処理をそのままActivityに通知する
-            onClickDeleteFavorite = {
-                fragmentCallback?.onDeleteFavorite(it.id)
+            onClickDeleteFavorite = {id:String->
+                fragmentCallback?.onDeleteFavorite(id)
+                Log.d("test",id)
             }
             // Itemをクリックしたとき
-            onClickItem = {
-                fragmentCallback?.onClickItem(it,it)
+            onClickItem = { url:String,id:String,logoImage:String,name:String ->
+                fragmentCallback?.onClickItem(url,id,logoImage,name)
             }
         }
 
